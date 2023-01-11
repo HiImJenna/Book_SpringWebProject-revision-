@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.kosa.domain.SampleDTO;
 import kr.or.kosa.domain.SampleDTOList;
@@ -103,6 +104,22 @@ public class SampleController {
 		
 		return dto;
 	}
+	
+	@GetMapping("/exUpload")
+	public void exUpload() {
+		log.info("exUpload....");
+	}
+	
+	@GetMapping("exUploadPost")
+	public void exUploadPost(ArrayList<MultipartFile> files) {
+		files.forEach(file -> {
+			log.info("--------");
+			log.info("name : " + file.getOriginalFilename());
+			log.info("size : " + file.getSize());
+		});
+	}
+	
+	
 	
 
 }
